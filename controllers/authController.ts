@@ -2,7 +2,7 @@ const HTTP_RES_CODE = require('../lib/constants');
 import { Request, Response } from 'express';
 import { User, Roles } from '../models/models';
 import { v4 as uuid } from 'uuid';
-exports.login = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response) => {
   const username = req.body.username || '';
   const password = req.body.password || '';
 
@@ -37,7 +37,7 @@ exports.login = async (req: Request, res: Response) => {
     }
 };
 
-exports.register = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
   const username = req.body.username || '';
   const password = req.body.password || '';
   const email = req.body.email || '';
@@ -88,7 +88,7 @@ exports.register = async (req: Request, res: Response) => {
   }
 }
 
-exports.getUsers = async (req: Request, res: Response) => {
+const getUsers = async (req: Request, res: Response) => {
   
     try {
     const users = await User.find({}, { _id: 0, __v: 0 , password: 0, createdAt: 0, updatedAt: 0, refreshToken: 0, sassionTime: 0})
@@ -104,7 +104,7 @@ exports.getUsers = async (req: Request, res: Response) => {
   }
 }
 
-exports.roleCreate = async (req: Request, res: Response) => {
+const roleCreate = async (req: Request, res: Response) => {
   const rolename = req.body.rolename || '';
   const description = req.body.description || '';
   const room = req.body.room || {};
@@ -130,3 +130,10 @@ exports.roleCreate = async (req: Request, res: Response) => {
   }
   
 }
+
+module.exports = {
+  login,
+  register,
+  getUsers,
+  roleCreate
+};
