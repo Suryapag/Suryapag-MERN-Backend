@@ -1,6 +1,7 @@
-import express, { Application, Request, Response } from 'express';
-import {db} from './config/mongodb';
-const auth = require('./middleware/authMiddleware');
+import express from "express";
+import type { Application, Request, Response } from "express";
+const { db } = require("./config/mongodb");
+const auth = require("./routes/auth");
 const cors = require("cors");
 const app: Application = express();
 const PORT = process.env.PORT || 4041;
