@@ -70,7 +70,7 @@ const register = async (req: Request, res: Response) => {
         });
     };
     const newUser = new User({
-      useruid: uuid(),
+      useruid: require('crypto').randomBytes(64).toString('hex'),
       username: username,
       password: password,
       email: email,
@@ -114,7 +114,7 @@ const roleCreate = async (req: Request, res: Response) => {
   try {
     const newRole = new Roles({
       roleName: rolename,
-      roleuid: uuid(),
+      roleuid: require('crypto').randomBytes(64).toString('hex'),
       description: description,
       room: room,
       user: user,
