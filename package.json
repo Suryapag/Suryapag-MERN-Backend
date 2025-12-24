@@ -2,7 +2,7 @@
   "name": "node_backend_hms",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
     "start": "ts-node app.ts",
     "dev": "nodemon app.ts"
