@@ -1,8 +1,9 @@
-import express from "express";
-import type { Application, Request, Response } from "express";
-const { db } = require("./config/mongodb");
-const auth = require("./routes/auth");
-const cors = require("cors");
+import express, { Application } from "express";
+import cors from "cors";
+import { Request, Response } from "express";
+import { db } from "./config/mongodb";
+import usercontroller from "./routes/auth";
+
 const app: Application = express();
 const PORT = process.env.PORT || 4041;
 
@@ -16,7 +17,7 @@ app.use(cors({
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(auth);
+app.use(usercontroller);
 // Basic route
 app.get('/', (req: Request, res: Response) => {
   res.json({ message: 'Hello TypeScript Backend!' });

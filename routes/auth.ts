@@ -1,5 +1,5 @@
-const auth = require('../controllers/authController');
-const { Router } = require('express');
+import auth from '../controllers/authController';
+import { Router } from 'express';
 const app = Router();
 
 
@@ -9,4 +9,4 @@ app.get('/users', auth.getUsers);
 app.post('/rolecreate', auth.roleCreate);
 
 
-module.exports = app;
+export default app;

@@ -1,7 +1,6 @@
 const HTTP_RES_CODE = require('../lib/constants');
 import { Request, Response } from 'express';
 import { User, Roles } from '../models/models';
-import { v4 as uuid } from 'uuid';
 const login = async (req: Request, res: Response) => {
   const username = req.body.username || '';
   const password = req.body.password || '';
@@ -25,7 +24,7 @@ const login = async (req: Request, res: Response) => {
         return res.status(HTTP_RES_CODE.HTTP_UNAUTHORIZED).json({ message: 'Invalid username or password' });
       }
 
-      const token = uuid();
+      const token = require('crypto').randomBytes(64).toString('hex');
       const date = new Date();
       date.setHours(date.getHours() + 24);
       user.refreshToken = token;
@@ -131,7 +130,7 @@ const roleCreate = async (req: Request, res: Response) => {
   
 }
 
-module.exports = {
+export default {
   login,
   register,
   getUsers,
